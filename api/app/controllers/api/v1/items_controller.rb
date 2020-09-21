@@ -12,6 +12,21 @@ module Api
         render json: @item
       end
 
+      def create
+        item = Item.new(item_params)
+        if item.save
+          render json: item
+        else
+          render json: item.errors
+        end
+      end
+
+      def destroy
+      end
+
+      def update
+      end
+
       private
 
       def set_item

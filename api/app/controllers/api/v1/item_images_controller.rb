@@ -2,7 +2,8 @@ module Api
   module V1
     class ItemImagesController < ApplicationController
       def index
-        render json: 'test'
+        images = ItemImage.fetch_images
+        render json: images, status: :ok
       end
 
       def upload

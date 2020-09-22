@@ -4,6 +4,17 @@ class ItemImage
 
   validates :filename, :image, presence: true
 
+  def self.fetch_images(s3_client = AwsS3.new)
+    s3_config = Rails.configuration.x.application[:aws][:project][:image_server][:s3]
+    bucket = s3_config[:bucket]
+    prefix = s3_config[:prefix][:item]
+    cdn_domain = Rails.configuration.x.application[:cdn][:domain]
+
+    s3_client
+      .list_image_objects(bucket: bucket, prefix: prefix)
+      .map { |object| object.merge(url: "#{cdn_domain}/#{object[:url]}") }
+  end
+
   def upload(s3_client = AwsS3.new)
     s3_config = Rails.configuration.x.application[:aws][:project][:image_server][:s3]
     bucket = s3_config[:bucket]

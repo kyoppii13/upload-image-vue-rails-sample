@@ -3,6 +3,8 @@ development:
     project:
       image_server:
         s3:
-          bucket:  'image-upload-kyoppii'
+          bucket: 'image-upload-kyoppii'
           prefix:
             item: 'item'
+  cdn:
+    domain: http://dt9hdwu9txswj.cloudfront.net

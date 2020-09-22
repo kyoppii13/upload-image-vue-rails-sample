@@ -1,0 +1,8 @@
+development:
+  aws:
+    project:
+      image_server:
+        s3:
+          bucket:  'image-upload-kyoppii'
+          prefix:
+            item: 'item'
